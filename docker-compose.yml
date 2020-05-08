@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-
+  
   node:
     build:
       context: ./services/node
@@ -20,6 +20,24 @@ services:
     depends_on:
       - redis
     
+  client:
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './services/client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    networks:
+      - app-tier
+    depends_on:
+      - node
+
   redis:
     image: bitnami/redis:latest
     ports:
@@ -30,7 +48,7 @@ services:
       - ./redis:/bitnami/redis/data
     networks:
       - app-tier
-    container_name: redis_dos
+    container_name: dos
 
   nginx:
     build:

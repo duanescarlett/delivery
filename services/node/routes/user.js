@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
-const mailGun = require('mailgun-js')
 const stripe = require('stripe')(process.env.Secret_API_KEY)
 const redis_con = require('../db/redis_con')
 const permission = require('../middleware/auth')
@@ -10,34 +9,6 @@ const user = require('../middleware/user')
 const manager = require('../middleware/manager')
 const employee = require('../middleware/employee')
 const admin = require('../middleware/admin')
-
-const yelp = require('yelp-fusion')
-const client = yelp.client(process.env.Yelp_API_Key, {
-    // Socket closes in 5 seconds, if there is no response
-    socketTimeout: 5000
-})
-
-function mail(email, sessionToken){
-
-    let authEmail = {
-            apiKey: process.env.Email_API_Key,
-            domain: process.env.Email_Domain
-        }
-    
-    let mg = mailGun(authEmail)
-
-    let settings = {
-        from: 'Mailgun Sandbox <postmaster@sandboxf968adcaf95d4870a95a6a48bbda9308.mailgun.org>',
-        to: email,
-        subject: 'Test',
-        text: 'Touched you, now click here <a href="http://localhost/api/requestNewUser/"/>' + sessionToken
-    }
-
-    mg.messages().send(settings, (err, body) => {
-        console.log(body)
-    })
-
-}
 
 function shash(word){
     // Make a hash of the password
@@ -92,24 +63,24 @@ router.get('api/yelp_user_update', (req, res) => {
 
 router.get('/', (req, res) => {
     res.json([
-        "Welcome to the Appymeal API"
+        "Welcome to the Delivery API"
     ])
 })
 
 // User Login
 router.post('/api/login', (req, res, next) => {
-    let username = req.body.username
+    let email = req.body.email
     let password = req.body.password
 
     // Create the token for the session
     let token = jwt.sign({
-        user: username
+        user: email
     }, process.env.JWT_KEY, {
         expiresIn: "24h"
     })
 
     // If user exist create a session ID
-    redis_con.get(username)
+    redis_con.get(email)
     .then(data => {
         console.log("The ID => " + data)
         if(data === null) res.json({error: "The username was not found"})
@@ -185,7 +156,6 @@ router.post('/api/users', (req, res, next) => {
 
 // Add user
 router.post('/api/users/add', (req, res) => {
-    let username = req.body.username
     let email = req.body.email
     let password = req.body.password
     let type = req.body.type
@@ -195,24 +165,22 @@ router.post('/api/users/add', (req, res) => {
     let timestamp = Date.now()
 
     let token = jwt.sign({
-        email: email,
-        user: username
+        email: email
     }, process.env.JWT_KEY, {
         expiresIn: "24h"
     })
 
-    redis_con.get(username)
+    redis_con.get(email)
     .then(data => {
         if(data !== null){
             res.json({
-                error: "This username already exist.",
+                error: "This email already exist.",
                 data: data
             })
         } 
         else {
             // Create the hash
             redis_con.client.hmset(num, [
-                'username', username, 
                 'email', email,
                 'password', hash,
                 'type', type,
@@ -221,41 +189,46 @@ router.post('/api/users/add', (req, res) => {
                 'token', token
             ], (err, reply) => {
                 if(err){
-                    res.status(422).send('A user already has the username ' + username + '.')
+                    res.status(422).send('A user already has the email ' + email + '.')
                 }
                 else{
                     // Create the set
-                    redis_con.client.set(username, num)
+                    redis_con.client.set(email, num)
                     // Create a list
-                    redis_con.client.lpush('users', username)
+                    redis_con.client.lpush('users', email)
                     console.log("User Added..." + reply)
-                    let cusRes // Store customer create res from stripe
+                    // let cusRes // Store customer create res from stripe
                     stripe.customers.create({
-                          description: 'Appymeal Customer',
-                          email: email,
-                          metadata: {
-                            username: username,
+                        description: 'Delapp Customer',
+                        email: email,
+                        metadata: {
+                            email: email,
                             type: type
-                          }
-                        },
-                        (err, customer) => {
-                            // asynchronously called
-                            // Update user
+                        }
+                    },
+                    (err, customer) => {
+                        // asynchronously called
+                        // Update user
+                        if(err){
+                            res.json({
+                                Therror: err
+                            })
+                            res.end(err)
+                        }
+                        else{
                             redis_con.client.hmset(num, [
                                 'stripeID', customer['id']
                             ], (err, reply) => {
                                 if(err){
                                     res.status(422).send('This user was not updated')
-                                    console.log(err)
+                                    // console.log(err)
                                 }
-                            })
-
-                            if(err){
-                                res.json({error: err})
-                            }
+                            })                                
                         }
-                    )
-                    mail(email, token)
+                        // if(err){
+                        //     res.json({Terror: err})
+                        // }
+                    })
                     res.json({
                         sessionToken: token,
                         user_type: type
@@ -288,16 +261,6 @@ router.post('/api/logout', permission, (req, res) => {
                 console.log(err)
             }
             else{
-                // redis_con.client.hmset('cache', [
-                //     'usertype', ''
-                // ], (err, reply) => {
-                //     if(err){
-                //         res.status(422).json({cache: 'This user type was not cached'})
-                //     }
-                //     else{
-                //         res.json({"success" : "The user is now logged out."})
-                //     }
-                // })
                 redis_con.client.set('cache', 'none', 
                     (err, reply) => {
                         if(err){
@@ -524,13 +487,14 @@ router.post('/api/restaurant/info', permission, (req, res) => {
 router.post('/api/restaurant/add', permission, (req, res, next) => {
     let name = req.body.name
     let manager = req.body.manager
+    let buildingNum = req.body.buildingNum
     let street = req.body.street
     let city = req.body.city
-    let buildingNum = req.body.buildingNum
+    let state = req.body.state
+    let zip = req.body.zip
     let gps = req.body.gps
-    let rating = 0
 
-    let num = Math.floor(Math.random() * 10000000000)
+    let num = Math.floor(Math.random() * 1000000000)
     redis_con.get(name)
     .then(data => {
         if(data !== null){
@@ -541,18 +505,19 @@ router.post('/api/restaurant/add', permission, (req, res, next) => {
         }
         else {
             redis_con.client.hmset(num, [
-                "id", num,
                 "name", name,
                 "manager", manager,
+                "buildingNum", buildingNum,
                 "street", street,
                 "city", city,
-                "buildingNum", buildingNum,
+                "state", state,
+                "zip", zip,
                 "gps", gps,
-                "rating", rating
             ], (err, reply) => {
                 if(err){
-                    res.status(422).send('A user already has the username ' + username + '.')
                     console.log(err)
+                    res.status(422).send(err)
+                    // res.json({error: err})
                 }
                 else{
                     // Create the set
