@@ -1,4 +1,4 @@
-# Appymeal Backend
+# DelApp
 
 ## Build Instructions
 The server must be running docker and docker compose, this application uses docker compose for the build. Run these commands to build and run the application.
