@@ -7,14 +7,16 @@ class Header extends Component {
     
     constructor(props){
         super(props)
-        this.state = {}
+        this.state = {
+            token: ls.get('token')
+        }
     }
 
-    componentDidMount = () => {
-        this.setState(() => ({
-            token: ls.get('token')
-        }))
-    }
+    // componentDidMount = () => {
+    //     this.setState(() => ({
+    //         token: ls.get('token')
+    //     }))
+    // }
 
     onTextChangeCA = e => {
         e.preventDefault()
@@ -26,7 +28,7 @@ class Header extends Component {
 
     logout = e => {
         // e.preventDefault()
-        this.props.token('') // Remove the JWT from the state
+        // this.props.token('') // Remove the JWT from the state
         ls.set('token', '') // Remove the JWT from the local storage
         this.setState(() => ({
             token: ls.get('token')
@@ -35,7 +37,7 @@ class Header extends Component {
 
     login = e => {
         const { email, password } = this.state
-        e.preventDefault()
+        // e.preventDefault()
         // Do the API login call
         axios.post('/api/login', {
             email: email,
@@ -55,7 +57,7 @@ class Header extends Component {
 
     register = e => {
         const { email, password, con_pass, type } = this.state
-        e.preventDefault()
+        // e.preventDefault()
         // Do the API call
         if(password === con_pass){
             axios.post('/api/users/add', {
@@ -76,11 +78,26 @@ class Header extends Component {
 
     }
 
-    // var options = {
-    //     method: 'GET',
-    //     url: 'https://myapi.com/api',
-    //     headers: {'content-type': 'application/json', authorization: 'Bearer ACCESS_TOKEN'}
-    // }
+    linkHandle = (e, field, type) => {
+        e.preventDefault()
+        axios({
+            method: 'post',
+            url: '/api/business/batch',
+            headers: {
+                'Authorization': 'bearer ' + this.state.token
+            },
+            data: {
+                field: field,
+                data: type
+            }
+        })
+        .then((res) => {
+            res.json({success: res})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
     render(){
         // const logged = this.props.auth
@@ -99,15 +116,39 @@ class Header extends Component {
                         <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/stores">Add Your Store</a>
+                        <a className="nav-link" href="/stores">Add Your Business</a>
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Browse Local Stores
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="/">Restaurants</a>
-                        <a className="dropdown-item" href="/">Pharmacies</a>
+
+                        <a className="dropdown-item" 
+                            // onChange={this.props.page("restaurant")}
+                            href="/multibuss/restaurant">Restaurants
+                        </a>
+
+                        <a className="dropdown-item" 
+                            // onChange={this.props.page("pharmacy")}
+                            href="/multibuss/pharmacy">Pharmacies
+                        </a>
+
+                        <a className="dropdown-item" 
+                            // onChange={e => this.props.page("supermarket")}
+                            href="/multibuss/supermarket">Supermarket
+                        </a>
+
+                        <a className="dropdown-item" 
+                            // onChange={e => this.props.page("convenience")}
+                            href="/multibuss/convenience">Convenience store
+                        </a>
+
+                        <a className="dropdown-item" 
+                            // onChange={e => this.props.page("pharmacyk")}
+                            href="/multibuss">Pharmacies
+                        </a>
+
                         <div className="dropdown-divider"></div>
                         <a className="dropdown-item" href="/">Something else here</a>
                         </div>

@@ -98,18 +98,6 @@ router.post('/api/login', (req, res, next) => {
                 .then(data => {
                     password = shash(password)
                     if(password === data.password){
-                        // Put the user type in a cache
-                        // redis_con.client.hmset('cache', [
-                        //     'usertype', data['type']
-                        // ], (err, reply) => {
-                        //     if(err){
-                        //         res.status(422).json({cache: 'This user type was not cached'})
-                        //     }
-                        //     else{
-                        //         delete data.password
-                        //         res.json({sessionToken: data['token'], userType: data['type']})
-                        //     }
-                        // })
                         redis_con.client.set('cache', data['type'], 
                         (err, reply) => {
                             if(err){
@@ -118,8 +106,6 @@ router.post('/api/login', (req, res, next) => {
                             else{
                                 delete data.password
                                 res.json({sessionToken: data['token'], userType: data['type']})
-                        
-                                // res.json({error: reply})
                             }
                         })
                     } 
@@ -316,7 +302,7 @@ router.get('/api/username/get/:username', permission, user, (req, res) => {
 })
 
 // Get filtered user info
-router.post('/api/restaurant/get/:name', (req, res) => {
+router.post('/api/business/get/:name', (req, res) => {
     redis_con.get(req.params.name)
     .then(data => {
         console.log(data)
@@ -332,7 +318,7 @@ router.post('/api/restaurant/get/:name', (req, res) => {
     })
 })
 
-// Get Filtered Restaurant Info.
+// Get Filtered business Info.
 router.post('/api/user/info', permission, (req, res) => {
     let username = req.body.username
     let field = req.body.field
@@ -440,24 +426,44 @@ router.delete('/api/user/delete/:username', permission, (req, res, next) => {
     })
 })
 
-// Get Restaurant 
-router.post('/api/restaurants', (req, res, next) => {
+// Get business 
+router.get('/api/business', (req, res, next) => {
     let list = []
-    redis_con.lrange('restaurants')
+    redis_con.lrange('business')
     .then(data => {
         // Iterate the list and find each restaurant obj
         data.forEach(element => {
             list.push(element)
         })
-        res.json({restaurants: list})
+        res.json({businesses: list})
     })
     .catch(err => {
         res.json({error: err})
     })
 })
 
-// Get Filtered Restaurant Info.
-router.post('/api/restaurant/info', permission, (req, res) => {
+// Get business based on param
+router.post('/api/business/batch', (req, res, next) => {
+    let field = req.body.field
+    let type = req.body.data
+    let list = []
+
+    redis_con.lrange(type)
+    .then(data => {
+        // Iterate the list and find each restaurant obj
+        data.forEach(element => {
+            list.push(element)
+        })
+        res.json({businesses: list})
+    })
+    .catch(err => {
+        res.status(422).json({error3: err})
+    })
+
+})
+
+// Get Filtered business Info.
+router.post('/api/business/info', permission, (req, res) => {
     let name = req.body.name
     let field = req.body.field
 
@@ -483,10 +489,11 @@ router.post('/api/restaurant/info', permission, (req, res) => {
     })
 })
 
-// Add Restaurant
-router.post('/api/restaurant/add', permission, (req, res, next) => {
+// Add business
+router.post('/api/business/add', permission, (req, res) => {
     let name = req.body.name
     let manager = req.body.manager
+    let type = req.body.type
     let buildingNum = req.body.buildingNum
     let street = req.body.street
     let city = req.body.city
@@ -494,12 +501,17 @@ router.post('/api/restaurant/add', permission, (req, res, next) => {
     let zip = req.body.zip
     let gps = req.body.gps
 
+    let base64 = req.headers.authorization.split(" ")[1]
+    let decoded = jwt.verify(base64, process.env.JWT_KEY)
+
+    // console.log(decoded)
+
     let num = Math.floor(Math.random() * 1000000000)
     redis_con.get(name)
     .then(data => {
         if(data !== null){
             res.json({
-                error: "This restaurant already exist.",
+                error: "This business already exist.",
                 data: data
             })            
         }
@@ -513,17 +525,17 @@ router.post('/api/restaurant/add', permission, (req, res, next) => {
                 "state", state,
                 "zip", zip,
                 "gps", gps,
+                "type", type,
+                "user", decoded.user
             ], (err, reply) => {
                 if(err){
-                    console.log(err)
                     res.status(422).send(err)
-                    // res.json({error: err})
                 }
                 else{
                     // Create the set
                     redis_con.client.set(name, num)
                     // Create a list
-                    redis_con.client.lpush('restaurants', name)
+                    redis_con.client.lpush(type, name)
                     // Send response to client
                     res.json({
                         success: name + ' was added to the datastore ' + reply
@@ -537,8 +549,8 @@ router.post('/api/restaurant/add', permission, (req, res, next) => {
     })
 })
 
-// Update Restaurant
-router.post('/api/restaurant/update', permission, (req, res) => {
+// Update business
+router.post('/api/business/update', permission, (req, res) => {
     let name = req.body.name
     let field = req.body.field
     let data = req.body.data
@@ -567,8 +579,8 @@ router.post('/api/restaurant/update', permission, (req, res) => {
     })
 })
 
-// Delete Restaurant
-router.delete('/api/restaurant/delete/:name', permission, (req, res) => {
+// Delete business
+router.delete('/api/business/delete/:name', permission, (req, res) => {
     let name = req.params.name
     redis_con.get(name)
     .then(data => {

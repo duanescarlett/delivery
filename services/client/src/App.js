@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route} from 'react-router-dom'
 import Header from './components/header'
 import './App.css'
 import Jumbotron from './components/jumbotron'
-import Stores from './components/stores'
+import StoreReg from './components/storeReg'
 import Footer from './components/footer'
+import MultiBuss from './components/mulitbuss'
 
 class App extends Component {
 
@@ -13,10 +14,10 @@ class App extends Component {
     super(props)
     this.logged = this.logged.bind(this)
     this.token = this.token.bind(this)
-    this.page = this.page.bind(this)
+    // this.page = this.page.bind(this)
+    // this.curPage = null
     this.state = {
-      auth: false,
-      page: 'home'
+      auth: false
     }
   }
 
@@ -34,11 +35,9 @@ class App extends Component {
     ls.set('token', t)
   }
 
-  page = p => {
-    this.setState(() => ({
-      page: p
-    }))
-  }
+  // page = (p) => {
+  //   this.curPage = p
+  // }
 
   render() {
     return (
@@ -46,7 +45,7 @@ class App extends Component {
       <div>
         <Header 
           logged={this.logged}
-          token={this.token}
+          // page={this.page}
           tokenState={this.state.token}
           auth={this.state.auth}
         />
@@ -65,10 +64,16 @@ class App extends Component {
           path='/stores'
           exact
           component={() => 
-            <Stores
+            <StoreReg
               auth={this.state.auth} 
               token={this.state.token}
             />}
+        />
+
+        <Route 
+          path='/multibuss/:type'
+          exact
+          component={MultiBuss}
         />
 
         <Footer

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import ls from 'local-storage'
 
-class Stores extends Component {
+class StoreReg extends Component {
 
     constructor(props){
         super(props)
@@ -11,16 +11,12 @@ class Stores extends Component {
         }
     }
 
-    componentDidMount = () => {
-
-    }
-
     register = e => {
         e.preventDefault()
-        const { name, manager, buildingNum, street, city, state, zip, gps } = this.state
+        const { name, manager, buildingNum, type, street, city, state, zip, gps } = this.state
         axios({
             method: 'post',
-            url: '/api/restaurant/add',
+            url: '/api/business/add',
             headers: {
                 'Authorization': 'bearer ' + this.state.token
             },
@@ -28,6 +24,7 @@ class Stores extends Component {
                 name: name,
                 manager: manager,
                 buildingNum: buildingNum,
+                type: type,
                 street: street,
                 city: city,
                 state: state,
@@ -56,9 +53,11 @@ class Stores extends Component {
     render(){
         return(
             <React.Fragment>
-                <h1>Stores</h1>
+                <h1>Add your Business</h1>
                 <p>
-                    Add your store so that your local or international customers can purchase from anyware in the world
+                    Turn your business into an e-commerce store so 
+                    that your local or international customers can 
+                    purchase from anyware in the world
                 </p>
 
                 <form>
@@ -79,7 +78,23 @@ class Stores extends Component {
                                 onChange={(e) => this.onTextChangeCA(e)}
                                 id="manager"/>
                         </div>
+                        <div className="form-group col-md-6">
+                            <label for="inputPassword4">Type of Business</label>
+                            <select class="form-control" id="type" onChange={(e) => this.onTextChangeCA(e)}>
+                                <option>Supermarket</option>
+                                <option>Restaurant</option>
+                                <option>Department store</option>
+                                <option>Convenience store</option>
+                                <option>Speciality store</option>
+                                <option>Discount store</option>
+                                <option>Electronics</option>
+                                <option>Pharmacy</option>
+                                <option>Hardware</option>
+                                <option>Other</option>  
+                            </select>
+                        </div>
                     </div>
+                    <hr />
                     <div className="form-group">
                         <h6>Address</h6>
                         <label for="inputAddress">Building Number</label>
@@ -141,4 +156,4 @@ class Stores extends Component {
         )
     }
 }
-export default Stores
+export default StoreReg

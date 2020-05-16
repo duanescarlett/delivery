@@ -1,7 +1,29 @@
 import React, {Component} from 'react'
-// import ls from 'local-storage'
+import axios from 'axios'
 
 class Jumbotron extends Component {
+
+    constructor(props){
+        super(props)
+        this.state = {}
+    }
+
+    componentDidMount = () => {
+        axios.get('/api/business')
+        .then((res) => {
+            // console.log(res)
+            this.setState(() => ({
+                businesses: res.data.businesses
+            }))
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(function () {
+            // always executed
+        })
+    }
+
     render(){
         return(
             <React.Fragment>
@@ -26,7 +48,7 @@ class Jumbotron extends Component {
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="/" class="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
                         </div>
@@ -35,8 +57,10 @@ class Jumbotron extends Component {
                                 <img src="..." class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <p class="card-text">
+                                        {this.state.businesses}
+                                    </p>
+                                    <a href="/" class="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +70,7 @@ class Jumbotron extends Component {
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="/" class="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
                         </div>
