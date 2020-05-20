@@ -12,12 +12,6 @@ class Header extends Component {
         }
     }
 
-    // componentDidMount = () => {
-    //     this.setState(() => ({
-    //         token: ls.get('token')
-    //     }))
-    // }
-
     onTextChangeCA = e => {
         e.preventDefault()
         console.log("Event: " + e.target.id)
@@ -44,11 +38,7 @@ class Header extends Component {
             password: password
         })
         .then((res) => {
-            this.props.logged(true) // Tell state that we are logged in
-            this.props.token(res.data.sessionToken) // Add JWT to state
-            this.setState(() => ({
-                successMessage: 'You are now signed in'
-            }))
+            ls.set('token', res.data.sessionToken)
         })
         .catch((err) => {
             console.log(err)
@@ -126,22 +116,22 @@ class Header extends Component {
 
                         <a className="dropdown-item" 
                             // onChange={this.props.page("restaurant")}
-                            href="/multibuss/restaurant">Restaurants
+                            href="/multibuss/Restaurant">Restaurants
                         </a>
 
                         <a className="dropdown-item" 
                             // onChange={this.props.page("pharmacy")}
-                            href="/multibuss/pharmacy">Pharmacies
+                            href="/multibuss/Pharmacy">Pharmacies
                         </a>
 
                         <a className="dropdown-item" 
                             // onChange={e => this.props.page("supermarket")}
-                            href="/multibuss/supermarket">Supermarket
+                            href="/multibuss/Supermarket">Supermarket
                         </a>
 
                         <a className="dropdown-item" 
                             // onChange={e => this.props.page("convenience")}
-                            href="/multibuss/convenience">Convenience store
+                            href="/multibuss/Convenience">Convenience store
                         </a>
 
                         <a className="dropdown-item" 

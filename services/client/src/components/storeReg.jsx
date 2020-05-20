@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import ls from 'local-storage'
 
@@ -7,7 +8,8 @@ class StoreReg extends Component {
     constructor(props){
         super(props)
         this.state = {
-            token: ls.get('token')
+            token: ls.get('token'),
+            redirect: null
         }
     }
 
@@ -33,11 +35,15 @@ class StoreReg extends Component {
             }
         })
         .then((res) => {
-            this.setState(() => ({
-                reg: 'success'
-            }))
+            console.log(res)
+            this.setState({
+                redirect: '/businessPro/' + name
+            })
         })
         .catch((err) => {
+            this.setState({
+                exist: 'This Business is already registered'
+            })
             console.log(err)
         })
     }
@@ -51,6 +57,9 @@ class StoreReg extends Component {
     }
 
     render(){
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return(
             <React.Fragment>
                 <h1>Add your Business</h1>
@@ -63,6 +72,7 @@ class StoreReg extends Component {
                 <form>
                     <div className="form-row">
                         <div className="form-group col-md-6">
+                        <h5 style={{color:'red'}}>{this.state.exist}</h5>
                             <label for="inputEmail4">Business Name</label>
                             <input 
                                 type="text" 

@@ -7,25 +7,13 @@ import Jumbotron from './components/jumbotron'
 import StoreReg from './components/storeReg'
 import Footer from './components/footer'
 import MultiBuss from './components/mulitbuss'
+import BusinessPro from './components/businessPro'
 
 class App extends Component {
 
   constructor(props){
     super(props)
-    this.logged = this.logged.bind(this)
-    this.token = this.token.bind(this)
-    // this.page = this.page.bind(this)
-    // this.curPage = null
-    this.state = {
-      auth: false
-    }
-  }
-
-  // This logs the user in or out
-  logged = q => {// Passed in a boolean
-    this.setState(() => ({
-      auth: q
-    }))
+    this.state = {}
   }
 
   token = t => {// Passed in a JWT
@@ -35,20 +23,11 @@ class App extends Component {
     ls.set('token', t)
   }
 
-  // page = (p) => {
-  //   this.curPage = p
-  // }
-
   render() {
     return (
       <Router>
-      <div>
-        <Header 
-          logged={this.logged}
-          // page={this.page}
-          tokenState={this.state.token}
-          auth={this.state.auth}
-        />
+
+        <Header/>
 
         <Route 
           path='/'
@@ -76,11 +55,17 @@ class App extends Component {
           component={MultiBuss}
         />
 
+        <Route 
+          path='/businessPro/:company'
+          exact
+          component={BusinessPro}
+        />
+
         <Footer
           auth={this.state.auth}
           token={this.state.token}
         />
-      </div>
+
       </Router>
     )
   }

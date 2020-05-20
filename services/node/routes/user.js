@@ -20,47 +20,6 @@ function shash(word){
     return hash
 }
 
-router.get('api/yelp_user_update', (req, res) => {
-    // Get list of restaurants
-    redis_con.lrange('restaurants')
-    .then( data => {
-        // Iterate the list and find each restaurant obj
-        data.forEach(element => {
-            // Iterate list and get ratiing for each reastaurant
-            console.log('running a task every minute')
-            client.businessMatch({
-                name: element
-            })
-            .then(res => {
-                // Add rating to the restaurant's datastore
-                redis_con.get(res.jsonBody.businesses[0].name)
-                .then(id => {
-                    if(id === null) res.json({error: 'This restaurant does not exist.'})
-            
-                    // Update restaurant
-                    redis_con.client.hmset(id, [
-                        "rating", res.jsonBody.businesses[0].rating
-                    ], (err, reply) => {
-                        if(err){
-                            res.status(422).send('This restaurant was not updated')
-                            console.log(err)
-                        }
-                        else{
-                            res.json({
-                                success: rating + ' has been updated to ' + res.jsonBody.businesses[0].rating
-                            })
-                        }
-                    })
-                })
-            })
-            .catch(e => {
-                console.log(e)
-            })
-            
-        })
-    })
-})
-
 router.get('/', (req, res) => {
     res.json([
         "Welcome to the Delivery API"
@@ -444,7 +403,6 @@ router.get('/api/business', (req, res, next) => {
 
 // Get business based on param
 router.post('/api/business/batch', (req, res, next) => {
-    let field = req.body.field
     let type = req.body.data
     let list = []
 
@@ -486,6 +444,22 @@ router.post('/api/business/info', permission, (req, res) => {
     })
     .catch(err => {
         res.json({error: err})
+    })
+})
+
+// Get business data
+router.get('/api/business/:name', permission, (req, res) => {
+    redis_con.get(req.params.name)
+    .then(data => {
+        // console.log(data)
+        // Now get the hash
+        redis_con.hgetall(data)
+        .then(data => {
+            res.json({bus: Object.entries(data)})
+        })
+        .catch(err => {
+            res.json({error: err})
+        })
     })
 })
 
@@ -534,8 +508,10 @@ router.post('/api/business/add', permission, (req, res) => {
                 else{
                     // Create the set
                     redis_con.client.set(name, num)
-                    // Create a list
+                    // Create a list for business type
                     redis_con.client.lpush(type, name)
+                    // Create a general list of businesses
+                    redis_con.client.lpush('business', name)
                     // Send response to client
                     res.json({
                         success: name + ' was added to the datastore ' + reply
