@@ -93,10 +93,10 @@ class StoreReg extends Component {
                             <select class="form-control" id="type" onChange={(e) => this.onTextChangeCA(e)}>
                                 <option>Supermarket</option>
                                 <option>Restaurant</option>
-                                <option>Department store</option>
-                                <option>Convenience store</option>
-                                <option>Speciality store</option>
-                                <option>Discount store</option>
+                                <option>Department</option>
+                                <option>Convenience</option>
+                                <option>Speciality</option>
+                                <option>Discount</option>
                                 <option>Electronics</option>
                                 <option>Pharmacy</option>
                                 <option>Hardware</option>

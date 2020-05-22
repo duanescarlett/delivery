@@ -131,7 +131,7 @@ class Header extends Component {
 
                         <a className="dropdown-item" 
                             // onChange={e => this.props.page("convenience")}
-                            href="/multibuss/Convenience">Convenience store
+                            href="/multibuss/Convenience">Convenience
                         </a>
 
                         <a className="dropdown-item" 

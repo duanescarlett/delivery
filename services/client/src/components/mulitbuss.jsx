@@ -8,12 +8,17 @@ class MultiBuss extends Component {
         super(props)
         this.state = {
             token: ls.get('token'),
-            type: this.props.match.params.type
+            type: this.props.match.params.type,
+            stores: []
         }
     }
 
     componentDidMount = () => {
-        axios({
+        this.renderData()
+    }
+
+    renderData = async() => {
+        await axios({
             method: 'post',
             url: '/api/business/batch',
             headers: {
@@ -23,23 +28,27 @@ class MultiBuss extends Component {
                 data: this.state.type
             }
         })
-        .then((data) => {
-            console.log(data.data.businesses)
-            // this.stores = data.data.businesses
-            this.setState({stores: data.data.businesses})
+        .then((data) => { 
+            this.setState({stores: data.data})
         })
         .catch((err) => {
             console.log(err)
         })
-
     }
 
     render(){
-        
         return(
             <React.Fragment>
-                <code>Do you remember me</code>
-                <h5>{this.state.stores}</h5>
+                <h2>Stores</h2>
+                <p>
+                    {
+                        this.state.stores.map((business, i) => (
+                            <p key={i}>
+                                <a href={"/businessPro/" + business}>{business}</a>
+                            </p>
+                        ))
+                    }
+                </p>
             </React.Fragment>
         )
     }

@@ -27,7 +27,7 @@ class BusinessPro extends Component {
         .then((data) => {
 
             let stack = data.data.bus
-            for(let i = 0; 1 < stack.length; i++){
+            for(let i = 0; i < stack.length; i++){
                 let key = stack[i]
                 let index = key[0]
                 this.setState({[index]: key[1]})

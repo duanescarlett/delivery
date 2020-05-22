@@ -412,7 +412,7 @@ router.post('/api/business/batch', (req, res, next) => {
         data.forEach(element => {
             list.push(element)
         })
-        res.json({businesses: list})
+        res.json(Object.values(list))
     })
     .catch(err => {
         res.status(422).json({error3: err})
