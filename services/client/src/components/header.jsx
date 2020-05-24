@@ -126,7 +126,7 @@ class Header extends Component {
 
                         <a className="dropdown-item" 
                             // onChange={e => this.props.page("supermarket")}
-                            href="/multibuss/Supermarket">Supermarket
+                            href="/multibuss/Supermarket">Supermarkets
                         </a>
 
                         <a className="dropdown-item" 
@@ -136,11 +136,18 @@ class Header extends Component {
 
                         <a className="dropdown-item" 
                             // onChange={e => this.props.page("pharmacyk")}
-                            href="/multibuss">Pharmacies
+                            href="/multibuss/Speciality">Speciality
                         </a>
 
+                        <a className="dropdown-item" 
+                            // onChange={e => this.props.page("pharmacyk")}
+                            href="/multibuss/Discount">Discount
+                        </a>
+
+                        
+
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="/">Something else here</a>
+                        <a className="dropdown-item" href="/multibuss/Other">Other</a>
                         </div>
                     </li>
                     <li className="nav-item">

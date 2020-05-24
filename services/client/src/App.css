@@ -41,3 +41,27 @@
 .jumbo {
   margin-bottom: 8em;
 }
+
+.top-margin-dos {
+  margin-top: 2em;
+}
+
+.jumbotron {
+  background-color: #3c7bff;
+}
+
+.whiteText {
+  color: #ffffff;
+}
+
+.agentOrange {
+  color: #e84e33;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: #e84a34;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #e84a34;
+}
