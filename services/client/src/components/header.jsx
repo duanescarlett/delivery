@@ -144,14 +144,19 @@ class Header extends Component {
                             href="/multibuss/Discount">Discount
                         </a>
 
-                        
+                        <a className="dropdown-item" 
+                            // onChange={e => this.props.page("convenience")}
+                            href="/multibuss/Hardware">Hardware
+                        </a>
+
+                        <a className="dropdown-item" 
+                            // onChange={e => this.props.page("pharmacyk")}
+                            href="/multibuss/Electronic">Electronics
+                        </a>                   
 
                         <div className="dropdown-divider"></div>
                         <a className="dropdown-item" href="/multibuss/Other">Other</a>
                         </div>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="/" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                     </ul>
                     {

@@ -52,7 +52,7 @@ class Jumbotron extends Component {
                                 <div class="card-body mx-auto">
                                     <h3 class="card-title text-center">Supermarkets</h3>
                                     {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                    <a href="/" class="btn btn-primary text-center">Find local Supermarkets</a>
+                                    <a href="/multibuss/Supermarket" class="btn btn-primary text-center">Find Local Supermarkets</a>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@ class Jumbotron extends Component {
                                     <p class="card-text">
                                         
                                     </p>
-                                    <a href="/" class="btn btn-primary  text-center">Find Local Pharmacies</a>
+                                    <a href="/multibuss/Pharmacy" class="btn btn-primary  text-center">Find Local Pharmacies</a>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ class Jumbotron extends Component {
                                     <p class="card-text">
                                         
                                     </p>
-                                    <a href="/" class="btn btn-primary text-center">Find Local Restaurants</a>
+                                    <a href="/multibuss/Restaurant" class="btn btn-primary text-center">Find Local Restaurants</a>
                                 </div>
                             </div>
                         </div>
@@ -87,9 +87,9 @@ class Jumbotron extends Component {
                             <div class="card card-style">
                                 <img src={supermarket} class="card-img-top" width="400" height="200" alt="display" />
                                 <div class="card-body mx-auto">
-                                    <h3 class="card-title text-center">Convienience</h3>
+                                    <h3 class="card-title text-center">Convenience</h3>
                                     {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                    <a href="/" class="btn btn-primary text-center">Find local Supermarkets</a>
+                                    <a href="/multibuss/Convenience" class="btn btn-primary text-center">Find Local Convienience</a>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@ class Jumbotron extends Component {
                                     <p class="card-text">
                                         
                                     </p>
-                                    <a href="/" class="btn btn-primary  text-center">Find Local Pharmacies</a>
+                                    <a href="/multibuss/Speciality" class="btn btn-primary  text-center">Find Local Speciality Stores</a>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@ class Jumbotron extends Component {
                                     <p class="card-text">
                                         
                                     </p>
-                                    <a href="/" class="btn btn-primary text-center">Find Local Discount Stores</a>
+                                    <a href="/multibuss/Discount" class="btn btn-primary text-center">Find Local Discount Stores</a>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@ class Jumbotron extends Component {
                                 <div class="card-body mx-auto">
                                     <h3 class="card-title text-center">Other</h3>
                                     {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                                    <a href="/" class="btn btn-primary text-center">Find local Supermarkets</a>
+                                    <a href="/multibuss/Other" class="btn btn-primary text-center">Find Other Local Stores</a>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@ class Jumbotron extends Component {
                                     <p class="card-text">
                                         
                                     </p>
-                                    <a href="/" class="btn btn-primary  text-center">Find Local Pharmacies</a>
+                                    <a href="/multibuss/Electronic" class="btn btn-primary  text-center">Find Local Electronic Stores</a>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@ class Jumbotron extends Component {
                                     <p class="card-text">
                                         
                                     </p>
-                                    <a href="/" class="btn btn-primary text-center">Find Local Discount Stores</a>
+                                    <a href="/multibuss/Hardware" class="btn btn-primary text-center">Find Local Hardware Stores</a>
                                 </div>
                             </div>
                         </div>

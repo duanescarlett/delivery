@@ -65,3 +65,8 @@
 .navbar-light .navbar-nav .nav-link {
   color: #e84a34;
 }
+
+footer .footer {
+  background-color: #e84a34 !important;
+  color: #e84a34;
+}
