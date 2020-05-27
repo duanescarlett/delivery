@@ -10,6 +10,7 @@ class Header extends Component {
         this.state = {
             token: ls.get('token')
         }
+        this.auth = ''
     }
 
     onTextChangeCA = e => {
@@ -91,7 +92,10 @@ class Header extends Component {
 
     render(){
         // const logged = this.props.auth
-        const logged = this.state.token
+        let logged = this.state.token
+        if(this.state.token === 'undefined'){
+            logged = null
+        }
         return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -158,6 +162,14 @@ class Header extends Component {
                         <a className="dropdown-item" href="/multibuss/Other">Other</a>
                         </div>
                     </li>
+                    {
+                        logged ? 
+                        <li className="nav-item">
+                            <a className="nav-link" href="/mystores">My Stores</a>
+                        </li>
+                        : <code></code>
+                    }
+                    
                     </ul>
                     {
                         logged 
@@ -166,6 +178,7 @@ class Header extends Component {
                         <button class="btn btn-primary ml-1" id="signupPop" data-toggle="modal" data-target="#signupModal" type="submit">Signup</button></div>
                     }
                 </div>
+                <p>{this.auth}</p>
             </nav>
 
             {/* <!--Login Modal--> */}

@@ -42,7 +42,7 @@ class StoreReg extends Component {
         })
         .catch((err) => {
             this.setState({
-                exist: 'This Business is already registered'
+                exist: 'Something went wrong, Are you logged in?'
             })
             console.log(err)
         })
@@ -161,6 +161,7 @@ class StoreReg extends Component {
                         type="submit" 
                         class="btn btn-primary" 
                         onClick={(e) => this.register(e)}>Register</button>
+                        <h5 style={{color:'red'}}>{this.state.exist}</h5>
                 </form>
             </React.Fragment>
         )

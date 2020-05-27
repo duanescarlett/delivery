@@ -49,7 +49,7 @@ router.post('/api/login', (req, res, next) => {
             'token', token
         ], (err, reply) => {
             if(err){
-                res.status(422).send({error: 'This username does not exist'})
+                res.status(401).send({error: 'This username does not exist'})
             }
             else{
                 // Now get the hash
