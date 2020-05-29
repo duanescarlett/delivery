@@ -8,31 +8,25 @@ class MyStores extends Component {
         super(props)
         this.state = {
             token: ls.get('token'),
-            type: this.props.match.params.company
+            stores: []
         }
     }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         this.renderData()
     }
 
     renderData = async() => {
         await axios({
             method: 'get',
-            url: '/api/business/' + this.state.type,
+            url: '/api/business/user',
             headers: {
                 'Authorization': 'bearer ' + this.state.token
             }
         })
         .then((data) => {
-
-            let stack = data.data.bus
-            for(let i = 0; i < stack.length; i++){
-                let key = stack[i]
-                let index = key[0]
-                this.setState({[index]: key[1]})
-            }
-
+            console.log(data)
+            this.setState({stores: data.data})
         })
         .catch((err) => {
             console.log(err)
@@ -40,23 +34,23 @@ class MyStores extends Component {
     }
 
     render(){
-
         return(
             <React.Fragment>
-            <div>
-                <h5>Business Profile</h5>
-                <code>{this.state.name}</code><br/>
-                <code>{this.state.buildingNum}</code><br/>
-                <code>{this.state.street}</code><br/>
-                <code>{this.state.city}</code><br/>
-                <code>{this.state.state}</code><br/>
-                <code>{this.state.zip}</code><br/>
-                <code>{this.state.gps}</code><br/>
-                
-            </div>
+                <div>
+                    <h5>Business Profile</h5>
+                    <p>
+                        {
+                            // this.state.stores
+                            this.state.stores.map((store, i) => (
+                                <p key={i}>
+                                    <a href={"/businessPro/" + store}>{store}</a>
+                                </p>
+                            ))
+                        }
+                    </p>
+                </div>
             </React.Fragment>
         )
     }
-
 }
 export default MyStores

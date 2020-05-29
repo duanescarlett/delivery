@@ -8,7 +8,7 @@ import StoreReg from './components/storeReg'
 import Footer from './components/footer'
 import MultiBuss from './components/mulitbuss'
 import BusinessPro from './components/businessPro'
-import MyStores from './components/MyStores '
+import MyStores from './components/MyStores'
 
 class App extends Component {
 

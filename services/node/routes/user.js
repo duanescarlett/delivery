@@ -417,7 +417,29 @@ router.post('/api/business/batch', (req, res, next) => {
     .catch(err => {
         res.status(422).json({error3: err})
     })
+})
 
+// Get list of stores registered by user *
+router.get('/api/business/user', permission, (req, res, next) => {
+    let list = []
+
+    let base64 = req.headers.authorization.split(" ")[1]
+    let decoded = jwt.verify(base64, process.env.JWT_KEY)
+    // console.log(decoded)
+    let user = JSON.stringify(decoded.user)
+    redis_con.lrange(user)
+    .then(data => {
+        // Iterate the list and find each restaurant obj
+        data.forEach(element => {
+            // console.log(element)
+            list.push(element)
+        })
+        console.log(list)
+        res.json(Object.entries(list))
+    })
+    .catch(err => {
+        res.status(422).json({error3: err})
+    })
 })
 
 // Get Filtered business Info.
@@ -478,7 +500,9 @@ router.post('/api/business/add', permission, (req, res) => {
     let base64 = req.headers.authorization.split(" ")[1]
     let decoded = jwt.verify(base64, process.env.JWT_KEY)
 
-    // console.log(decoded)
+    console.log(decoded)
+    let user = JSON.stringify(decoded.user)
+    console.log(user)
 
     let num = Math.floor(Math.random() * 1000000000)
     redis_con.get(name)
@@ -500,7 +524,7 @@ router.post('/api/business/add', permission, (req, res) => {
                 "zip", zip,
                 "gps", gps,
                 "type", type,
-                "user", decoded.user
+                "user", user
             ], (err, reply) => {
                 if(err){
                     res.status(422).send(err)
@@ -512,6 +536,8 @@ router.post('/api/business/add', permission, (req, res) => {
                     redis_con.client.lpush(type, name)
                     // Create a general list of businesses
                     redis_con.client.lpush('business', name)
+                    // Create a list of the users businesses
+                    redis_con.client.lpush(user, name)
                     // Send response to client
                     res.json({
                         success: name + ' was added to the datastore ' + reply
@@ -571,6 +597,11 @@ router.delete('/api/business/delete/:name', permission, (req, res) => {
     .catch(error => {
         res.status(422).send({error: 'This restaurant was not found'})
     })
+})
+
+// Get Stores
+router.post('/api/mystores/', permission, (req, res) => {
+
 })
 
 module.exports = router
