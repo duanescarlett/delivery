@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ls from 'local-storage'
 import axios from 'axios'
+import store from './../redux/store'
 
 class MyStores extends Component {
 
@@ -14,6 +15,27 @@ class MyStores extends Component {
 
     componentDidMount = () => {
         this.renderData()
+        
+        // Redux Test
+        const unsubscribe = store.subscribe(() => {
+            console.log("Store changed", store.getState())
+        })
+
+        store.dispatch({
+            type: "bugAdded",
+            payload: {
+                description: "Bug 1"
+            }
+        })
+
+         unsubscribe()
+        // store.dispatch({
+        //     type: "bugRemoved",
+        //     payload: {
+        //         id: 1
+        //     }
+        // })
+        console.log(store.getState())
     }
 
     renderData = async() => {
@@ -25,7 +47,7 @@ class MyStores extends Component {
             }
         })
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             this.setState({stores: data.data})
         })
         .catch((err) => {
@@ -40,7 +62,6 @@ class MyStores extends Component {
                     <h5>Business Profile</h5>
                     <p>
                         {
-                            // this.state.stores
                             this.state.stores.map((store, i) => (
                                 <p key={i}>
                                     <a href={"/businessPro/" + store}>{store}</a>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ls from 'local-storage'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
+// import PropTypes from 'prop-types'
 import Header from './components/header'
 import './App.css'
 import Jumbotron from './components/jumbotron'
