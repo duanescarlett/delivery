@@ -58,17 +58,28 @@ class MyStores extends Component {
     render(){
         return(
             <React.Fragment>
-                <div>
-                    <h5>Business Profile</h5>
-                    <p>
-                        {
-                            this.state.stores.map((store, i) => (
-                                <p key={i}>
-                                    <a href={"/businessPro/" + store}>{store}</a>
-                                </p>
-                            ))
-                        }
-                    </p>
+                <div class="container-fluid">
+                    <div class="row">
+                        
+                        <div class="col">
+                            <h3>Business Profile</h3>
+                        </div>
+                        
+                        <div class="col">
+                            <p>
+                                <h3>My Stores</h3>
+                            </p>
+                            <ul class="list-group list-group-flush">
+                                {
+                                    this.state.stores.map((store, i) => (
+                                        <li class="list-group-item" key={i}>
+                                            <a href={"/businessPro/" + store}>{store}</a>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </React.Fragment>
         )

@@ -1,0 +1,37 @@
+file:///home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js {"mtime":1591374072991,"ctime":1590965199078,"size":853,"etag":"357ancl15rg","orphaned":false}
+const express = require('express')
+const router = express.Router()
+const formidable = require('formidable')
+const sharp = require('sharp')
+const permission = require('../middleware/auth')
+
+
+// Get Stores
+router.post('/api/dp/:store', permission, (req, res) => {
+    // debugger
+    // let file = req.body.name
+    let store = req.params.store
+    let form = new formidable.IncomingForm()
+
+    form.parse(req, (err, fields, files) => {
+        console.log(files)
+        let old = files.image.path
+        
+        let new1 = './stores/' + store + '/dp/' + files.filetoupload.name
+
+        fs.rename(old, new1, (err) => {
+            if (err) throw err
+            res.write('File uploaded and moved!')
+            res.end()
+        })
+    })
+
+    let multi = Object.entries(file)
+
+    multi.map((data, i) => {
+        console.log(data)
+    })
+
+})
+
+module.exports = router

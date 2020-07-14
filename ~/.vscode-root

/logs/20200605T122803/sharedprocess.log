@@ -1,0 +1,5 @@
+[2020-06-05 12:28:07.209] [sharedprocess] [info] main {"machineId":"2bab5d34f793fe42f5715047c6a05e720c56154b87222759ad1c3c8bae7758d8","windowId":2}
+[2020-06-05 12:28:07.326] [sharedprocess] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/home/dos/Documents/Dev/WebApps/Delivery/~/.vscode-root
+
+/User/snippets'
+[2020-06-05 12:28:47.256] [sharedprocess] [info] Starting to clean up unused language packs.

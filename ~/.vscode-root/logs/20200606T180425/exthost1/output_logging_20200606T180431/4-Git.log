@@ -1,0 +1,250 @@
+Looking for git in: git
+Using git 2.17.1 from git
+> git rev-parse --show-toplevel
+> git rev-parse --git-dir
+Open repository: /home/dos/Documents/Dev/WebApps/Delivery
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :services/nginx/dev.conf
+> git show :services/node/routes/upload.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git check-ignore -v -z --stdin
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show :docker-compose.yml
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/docker-compose.yml
+> git cat-file -s 9d207a6c16686936fca2d1e6b16052e8d3958c10
+> git show :services/node/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/Dockerfile-dev
+> git show :services/nginx/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/Dockerfile-dev
+> git check-ignore -v -z --stdin
+> git show :services/client/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/Dockerfile-dev
+> git show :services/node/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/Dockerfile-dev
+> git show :services/client/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/Dockerfile-dev
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :services/node/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/Dockerfile-dev
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git show :services/node/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/Dockerfile-dev
+> git show :services/client/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/Dockerfile-dev
+> git show :services/nginx/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/Dockerfile-dev
+> git show :services/client/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/Dockerfile-dev
+> git show :services/node/Dockerfile-dev
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/Dockerfile-dev
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git show :services/node/routes/user.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/user.js
+> git cat-file -s 23a01e23d0370ebb2c307d5a83e3b704be661ca5
+> git show :services/node/package.json
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/package.json
+> git cat-file -s bc682cd37f6dc40fd0c49bb5bb12aacb5f6a3a25
+> git show :services/node/server.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/server.js
+> git cat-file -s e21781b6b4d21754daa7f9fa41004a5bac835984
+> git show :services/node/routes/user.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/user.js
+> git cat-file -s 23a01e23d0370ebb2c307d5a83e3b704be661ca5
+> git show :.vscode/launch.json
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/.vscode/launch.json
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :services/node/package.json
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/package.json
+> git cat-file -s bc682cd37f6dc40fd0c49bb5bb12aacb5f6a3a25
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :services/node/server.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/server.js
+> git cat-file -s e21781b6b4d21754daa7f9fa41004a5bac835984
+> git show :services/node/routes/user.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/user.js
+> git cat-file -s 23a01e23d0370ebb2c307d5a83e3b704be661ca5
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :services/node/server.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/server.js
+> git cat-file -s e21781b6b4d21754daa7f9fa41004a5bac835984
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :docker-compose.yml
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/docker-compose.yml
+> git cat-file -s 9d207a6c16686936fca2d1e6b16052e8d3958c10
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :docker-compose.yml
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/docker-compose.yml
+> git cat-file -s 9d207a6c16686936fca2d1e6b16052e8d3958c10
+> git show :docker-compose.yml
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/docker-compose.yml
+> git cat-file -s 9d207a6c16686936fca2d1e6b16052e8d3958c10
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :services/node/package.json
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/package.json
+> git cat-file -s bc682cd37f6dc40fd0c49bb5bb12aacb5f6a3a25
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template

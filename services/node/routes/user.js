@@ -1,3 +1,4 @@
+const fs = require('fs')
 const express = require('express')
 const router = express.Router()
 const crypto = require('crypto')
@@ -10,15 +11,14 @@ const manager = require('../middleware/manager')
 const employee = require('../middleware/employee')
 const admin = require('../middleware/admin')
 
-function shash(word){
-    // Make a hash of the password
-    let hash = crypto
-        .createHash('sha256')
-        .update(word)
-        .digest('hex')
-
-    return hash
-}
+// function shash(word){
+//     // Make a hash of the password
+//     let hash = crypto
+//         .createHash('sha256')
+//         .update(word)
+//         .digest('hex')
+//     return hash
+// }
 
 router.get('/', (req, res) => {
     res.json([
@@ -55,7 +55,7 @@ router.post('/api/login', (req, res, next) => {
                 // Now get the hash
                 redis_con.hgetall(data)
                 .then(data => {
-                    password = shash(password)
+                    // password = shash(password)
                     if(password === data.password){
                         redis_con.client.set('cache', data['type'], 
                         (err, reply) => {
@@ -435,7 +435,7 @@ router.get('/api/business/user', permission, (req, res, next) => {
             list.push(element)
         })
         console.log(list)
-        res.json(Object.entries(list))
+        res.json(Object.values(list))
     })
     .catch(err => {
         res.status(422).json({error3: err})
@@ -470,7 +470,7 @@ router.post('/api/business/info', permission, (req, res) => {
 })
 
 // Get business data
-router.get('/api/business/:name', permission, (req, res) => {
+router.get('/api/business/:name', (req, res) => {
     redis_con.get(req.params.name)
     .then(data => {
         // console.log(data)
@@ -500,9 +500,9 @@ router.post('/api/business/add', permission, (req, res) => {
     let base64 = req.headers.authorization.split(" ")[1]
     let decoded = jwt.verify(base64, process.env.JWT_KEY)
 
-    console.log(decoded)
+    // console.log(decoded)
     let user = JSON.stringify(decoded.user)
-    console.log(user)
+    // console.log(user)
 
     let num = Math.floor(Math.random() * 1000000000)
     redis_con.get(name)
@@ -530,6 +530,11 @@ router.post('/api/business/add', permission, (req, res) => {
                     res.status(422).send(err)
                 }
                 else{
+                    // Create the directories
+                    var dir = `./stores/${name}/dp`
+                    if (!fs.existsSync(dir)){
+                        fs.mkdirSync(dir, {recursive: true})
+                    }
                     // Create the set
                     redis_con.client.set(name, num)
                     // Create a list for business type
@@ -597,11 +602,6 @@ router.delete('/api/business/delete/:name', permission, (req, res) => {
     .catch(error => {
         res.status(422).send({error: 'This restaurant was not found'})
     })
-})
-
-// Get Stores
-router.post('/api/mystores/', permission, (req, res) => {
-
 })
 
 module.exports = router

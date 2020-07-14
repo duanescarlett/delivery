@@ -1,0 +1,83 @@
+Looking for git in: git
+Using git 2.17.1 from git
+> git rev-parse --show-toplevel
+> git rev-parse --git-dir
+Open repository: /home/dos/Documents/Dev/WebApps/Delivery
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git check-ignore -v -z --stdin
+> git config --get commit.template
+> git show :services/node/routes/upload.js
+> git show :services/client/src/components/imgDropZone.jsx
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/src/components/imgDropZone.jsx
+> git show :services/node/routes/upload.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git check-ignore -v -z --stdin
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n41 -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git show :services/node/routes/upload.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git check-ignore -v -z --stdin
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git show :services/node/routes/upload.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git check-ignore -v -z --stdin
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git show :services/node/routes/upload.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show :services/client/src/components/imgDropZone.jsx
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/src/components/imgDropZone.jsx
+> git show :services/nginx/dev.conf
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/nginx/dev.conf
+> git cat-file -s 5622ce10524b02b0208d3006d859c9f09655eada
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :services/client/src/components/imgDropZone.jsx
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/src/components/imgDropZone.jsx

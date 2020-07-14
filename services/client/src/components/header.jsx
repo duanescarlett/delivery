@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
+// import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import ls from 'local-storage'
-import logo from '../../src/logo.svg'
+import crypto from 'crypto'
+import logo from '../../src/logo.png'
 
 class Header extends Component {
     
@@ -10,7 +12,7 @@ class Header extends Component {
         this.state = {
             token: ls.get('token')
         }
-        this.auth = ''
+        // this.auth = ''
     }
 
     onTextChangeCA = e => {
@@ -19,6 +21,14 @@ class Header extends Component {
         this.setState({
           [e.target.id]: e.target.value
         })
+    }
+
+    shash = word => {
+        let hash = crypto
+        .createHash('sha256')
+        .update(word)
+        .digest('hex')
+        return hash
     }
 
     logout = e => {
@@ -36,15 +46,20 @@ class Header extends Component {
         // Do the API login call
         axios.post('/api/login', {
             email: email,
-            password: password
+            password: this.shash(password)
         })
         .then((res) => {
             ls.set('token', res.data.sessionToken)
+            // this.direct('/')
         })
         .catch((err) => {
             console.log(err)
         })
     }
+
+    // direct = (path) => {
+    //     <Redirect to={path} />
+    // }
 
     register = e => {
         const { email, password, con_pass, type } = this.state
@@ -99,7 +114,7 @@ class Header extends Component {
         return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <img src={logo} alt="Logo" width="128" height="100" />
+                <img src={logo} alt="Logo" />
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

@@ -1,0 +1,6 @@
+[2020-06-04 15:12:51.765] [sharedprocess] [info] main {"machineId":"2bab5d34f793fe42f5715047c6a05e720c56154b87222759ad1c3c8bae7758d8","windowId":2}
+[2020-06-04 15:12:51.843] [sharedprocess] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/home/dos/Documents/Dev/WebApps/Delivery/~/.vscode-root/User/snippets'
+[2020-06-04 15:12:51.924] [sharedprocess] [info] Deleted from disk firefox-devtools.vscode-firefox-debug /home/dos/.vscode/extensions/firefox-devtools.vscode-firefox-debug-2.8.0
+[2020-06-04 15:13:31.799] [sharedprocess] [info] Starting to clean up unused language packs.
+[2020-06-04 15:15:42.610] [sharedprocess] [info] Uninstalling extension: p1c2u.docker-compose
+[2020-06-04 15:15:42.663] [sharedprocess] [info] Successfully uninstalled extension: p1c2u.docker-compose

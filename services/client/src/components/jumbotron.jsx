@@ -3,6 +3,7 @@ import axios from 'axios'
 import supermarket from '../../src/img/supermarket-4052658_1280.jpg'
 import pharmacy from '../../src/img/pharmacy.jpg'
 import restaurant from '../../src/img/restaurant.jpg'
+import logoPng from '../../src/logoTrans.png'
 
 class Jumbotron extends Component {
 
@@ -32,8 +33,11 @@ class Jumbotron extends Component {
             <React.Fragment>
                 <div class="jumbotron jumbotron-fluid border">
                     <div class="container">
-                        <h1 class="display-4 agentOrange">Delapp</h1>
+                        {/* <h1 class="display-4 agentOrange">Delapp</h1> */}
                         <p class="lead">
+                            <p>
+                                <img src={logoPng} alt="png logo" />
+                            </p>
                             <h3 class="whiteText">Delapp is an open e-commerce platform</h3>
                             <p class="whiteText">
                                 Find local business that will deliver products to your location <br />

@@ -70,3 +70,8 @@ footer .footer {
   background-color: #e84a34 !important;
   color: #e84a34;
 }
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}

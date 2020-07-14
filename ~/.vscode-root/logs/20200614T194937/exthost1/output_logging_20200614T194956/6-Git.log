@@ -1,0 +1,41 @@
+Looking for git in: git
+Using git 2.17.1 from git
+> git rev-parse --show-toplevel
+> git rev-parse --git-dir
+Open repository: /home/dos/Documents/Dev/WebApps/Delivery
+> git status -z -u
+> git show :services/node/routes/user.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/user.js
+> git cat-file -s 23a01e23d0370ebb2c307d5a83e3b704be661ca5
+> git check-ignore -v -z --stdin
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git show :services/client/package.json
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/package.json
+> git cat-file -s 57b58e44e17edb1e9afa0c1f58670560721a673a
+> git show :services/node/routes/upload.js
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/node/routes/upload.js
+> git show :services/client/src/components/imgDropZone.jsx
+> git ls-files --stage -- /home/dos/Documents/Dev/WebApps/Delivery/services/client/src/components/imgDropZone.jsx
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template

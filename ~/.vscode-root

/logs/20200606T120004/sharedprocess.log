@@ -1,0 +1,14 @@
+[2020-06-06 12:00:09.542] [sharedprocess] [info] main {"machineId":"2bab5d34f793fe42f5715047c6a05e720c56154b87222759ad1c3c8bae7758d8","windowId":2}
+[2020-06-06 12:00:49.630] [sharedprocess] [info] Starting to clean up unused language packs.
+[2020-06-06 13:24:00.915] [sharedprocess] [info] Installing extension: jakebathman.nginx-log-highlighter
+[2020-06-06 13:24:01.386] [sharedprocess] [info] Downloaded extension: jakebathman.nginx-log-highlighter /tmp/6c8843ed-c51f-4f03-af97-e37f7737b492
+[2020-06-06 13:24:01.446] [sharedprocess] [info] Extracted extension to /home/dos/.vscode/extensions/.jakebathman.nginx-log-highlighter-1.1.0: jakebathman.nginx-log-highlighter
+[2020-06-06 13:24:01.447] [sharedprocess] [info] Renamed to /home/dos/.vscode/extensions/jakebathman.nginx-log-highlighter-1.1.0
+[2020-06-06 13:24:01.448] [sharedprocess] [info] Installation completed. jakebathman.nginx-log-highlighter
+[2020-06-06 13:24:01.466] [sharedprocess] [info] Extensions installed successfully: jakebathman.nginx-log-highlighter
+[2020-06-06 13:25:50.527] [sharedprocess] [info] Installing extension: william-voyek.vscode-nginx
+[2020-06-06 13:25:50.802] [sharedprocess] [info] Downloaded extension: william-voyek.vscode-nginx /tmp/15714b68-771f-49ae-89ef-20a582f1561d
+[2020-06-06 13:25:50.837] [sharedprocess] [info] Extracted extension to /home/dos/.vscode/extensions/.william-voyek.vscode-nginx-0.7.2: william-voyek.vscode-nginx
+[2020-06-06 13:25:50.838] [sharedprocess] [info] Renamed to /home/dos/.vscode/extensions/william-voyek.vscode-nginx-0.7.2
+[2020-06-06 13:25:50.839] [sharedprocess] [info] Installation completed. william-voyek.vscode-nginx
+[2020-06-06 13:25:50.847] [sharedprocess] [info] Extensions installed successfully: william-voyek.vscode-nginx
